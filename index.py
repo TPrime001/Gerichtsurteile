@@ -1,4 +1,4 @@
-from index_text import indexing
+from build_index import indexing
 from load_dataset import load_wikidata
 # import re
 import pickle
