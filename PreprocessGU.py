@@ -3,6 +3,7 @@ import nltk.stem.snowball as snow
 from nltk.corpus import stopwords
 import re
 from load_dataset import clean_wikidata
+from collections import defaultdict
 
 # tokenize creates list of words
 def tokenize(text):
@@ -38,5 +39,14 @@ def preprocesss(text2):
 
 
 text = "<p>Der Antragsteller wird durch die noch im Streit stehende Beschränkung nicht in eigenen Rechten verletzt. Weder die Versammlungsfreiheit des Art. <a href=\"http://dejure.org/gesetze/GG/8.html\" rel=\"nofollow\" title=\"Art. 8 GG\">8</a> Abs. 1 GG noch andere Grundrechte - wie namentlich die Meinungsfreiheit aus Art. <a href=\"http://dejure.org/gesetze/GG/5.html\" rel=\"nofollow\" title=\"Art. 5 GG\">5</a> Abs. 1 Satz 1 Hs. 1 GG oder die allgemeine Handlungsfreiheit nach Art. <a href=\"http://dejure.org/gesetze/GG/2.html\" rel=\"nofollow\" title=\"Art. 2 GG\">2</a> Abs. 1 GG - verleihen dem Veranstalter einer Versammlung - wie hier dem Antragsteller - von ihrem Schutzgehalt her einen Anspruch darauf, ausländischen Staatsoberhäuptern oder Regierungsmitgliedern die Gelegenheit zu geben, in der Bundesrepublik Deutschland im Rahmen öffentlicher Versammlungen in ihrer Funktion als Staatsoberhaupt bzw. Regierungsmitglied zu politischen Themen zu sprechen.</p>"
+
+def count_tokens(tokens):
+    counter = defaultdict(int)
+    for token in tokens:
+        counter[token] += 1
+    return counter
+
+def max_count_token(token_counts):
+     return token_counts[max(token_counts, key=token_counts.get)]
 
 print (preprocesss(text))
