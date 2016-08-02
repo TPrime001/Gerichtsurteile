@@ -5,11 +5,6 @@ import pickle
 from collections import defaultdict
 
 filename = ""  # TODO fill filename and data below
-tag_text = ""
-tag_title = ""
-tag_sections = ""
-tag_divs = ""
-tag_id = ""
 
 data_all = load_wikidata(filename)
 
@@ -22,7 +17,6 @@ index = {"datum": defaultdict(list), "gericht": defaultdict(list), "typ": defaul
 keylist = ["datum", "gericht", "typ", "verfahrensgang", "rechtsgebiete"]
 
 for data_page in data_all:
-    # TODO link preprocessing
     az = data_page["AZ"][0]
     AZlist.append(az)
     textlist.append(data_page["text"][0])
