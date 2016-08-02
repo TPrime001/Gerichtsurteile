@@ -1,10 +1,10 @@
 from index_text import indexing
 from load_dataset import load_wikidata
-import re
+# import re
 import pickle
 from collections import defaultdict
 
-filename = "" #TODO fill filename and data below
+filename = ""  # TODO fill filename and data below
 tag_text = ""
 tag_title = ""
 tag_sections = ""
@@ -13,9 +13,24 @@ tag_id = ""
 
 data_all = load_wikidata(filename)
 
-for data_page in data_all:
-    #TODO link preprocessing
+AZlist = []
+textlist = []
+urllist = {}
+index = {"datum": defaultdict(list), "gericht": defaultdict(list), "typ": defaultdict(list),
+         "verfahrensgang": defaultdict(list), "rechtsgebiete": defaultdict(list)}
 
-    for section in data_page[tag_sections]:
-        if section[tag_id] == "text":
-            indexing(section, AZ)
+keylist = ["datum", "gericht", "typ", "verfahrensgang", "rechtsgebiete"]
+
+for data_page in data_all:
+    # TODO link preprocessing
+    az = data_page["AZ"][0]
+    AZlist.append(az)
+    textlist.append(data_page["text"][0])
+    urllist[az] = data_page["url"][0]
+    for i in keylist:
+        index[i][data_page[i][0]].append(az)
+
+save_in = open("index\\infobox.pickle", "wb")
+pickle.dump(index, save_in)
+save_in.close()
+indexing(textlist, AZlist)
