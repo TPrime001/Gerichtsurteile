@@ -11,10 +11,13 @@ data_all = load_wikidata(filename)
 AZlist = []
 textlist = []
 urllist = {}
-index = {"datum": defaultdict(list), "gericht": defaultdict(list), "typ": defaultdict(list),
-         "verfahrensgang": defaultdict(list), "rechtsgebiete": defaultdict(list)}
+index = {}
+keylist=[]
 
-keylist = ["datum", "gericht", "typ", "verfahrensgang", "rechtsgebiete"]
+for key, var in data_all[1]:
+    if key != "text":
+        keylist.append(key)
+        index[key]=defaultdict(list)
 
 for data_page in data_all:
     az = data_page["AZ"][0]
