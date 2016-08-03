@@ -31,10 +31,12 @@ def such():
     global answer
     global integer23
     integer23=0
-    nextresult()
     knopf4.place(x="0", y=200)
     knopf2.place(x="400", y="200")
     knopf3.place(x="200", y="200")
+    lableinfo.place(x="200", y="400")
+    lableinfo.pack_configure(side="right")
+    nextresult()
 
 knopf1= Button(fenster,text="Suchen",command=such)
 
