@@ -2,11 +2,14 @@ from PreprocessGU import preprocesss, count_tokens, max_count_token
 from collections import defaultdict
 from os import path
 import pickle
+import math
 
 index = defaultdict(dict)
 
 def indexing(textlist, AZ):
-
+    N = len(AZ)
+    if N != len(textlist):
+        print ("Error Länge")
     for AZ_no, text in enumerate(textlist):
         tokens = preprocesss(text)
 
@@ -23,6 +26,11 @@ def indexing(textlist, AZ):
                 index[token][number] += tf
             else:
                 index[token][number] = tf
+    for woerter in index:
+        n = len(index[woerter])
+        idf = math.log10(N/n)
+        for docid in woerter:
+             index[woerter][docid] *= idf
 
     with open("index.pickle", "wb") as f:
         pickle.dump(index, f)
