@@ -17,6 +17,14 @@ def suche(sa):
     for w in qtokens:
         for az in index[w]:
             resultdict[az]+=index[w][az]
+
+    urlfile=open("index/urls.pickle","rb")
+    url=pickle.load(urlfile)
+    urlfile.close()
+
+    if sa == "." or sa == ". ":
+        for key in url:
+            resultdict[key]=0
 #    for token, val in index:
 #        for w in qtokens:
 #            if token == w:
