@@ -1,14 +1,16 @@
 from tkinter import *
-
+from tkinter import messagebox
 
 
 integer23=0
 answer=""
-AZ=["bla","balbla"]
-urls=["www.google.de","www.bing.de"]
+title=["blabla","blablabla","blablablabla"]
+AZ=["bla","balbla","blablabla"]
+urls=["www.google.de","www.bing.de","www.yahoo.de"]
 fenster= Tk()
 fenster.title("Urteils Suche")
 fenster.geometry("500x500")
+
 lable1= Label(fenster,text="Geben sie bitte eine Suchanfrage ein")
 lable1.pack()
 eingabe=Entry(fenster)
@@ -21,26 +23,54 @@ def such():
     #get AZ and Url
     global answer
     global integer23
-
+    integer23=0
     nextresult()
+    knopf4.place(x="0", y=200)
+    knopf2.place(x="400", y="200")
+    knopf3.place(x="200", y="200")
 
 knopf1= Button(fenster,text="Suchen",command=such)
-knopf1.pack()
-lable2.pack()
+
+
 def nextresult():
     global integer23
     integer23+=1
     global answer
-    answer = AZ[integer23 -1]
+    try:
+        answer ="\n"+ AZ[integer23 -1]+"\n"+title[integer23 -1]
+        lableinfo.configure(text="")
+    except:
+        integer23-=1
+        lableinfo.configure(text="error: Kein weiteres Ergebnis gefunden")
+        if integer23== 0:
+            lableinfo.configure(text="error: Geben sie eine neue Suche ein ")
     lable2.configure(text=answer)
 knopf2=Button(fenster,text="nächstes Ergebnis",command=nextresult)
-knopf2.pack()
+
 def gotourl():
     import webbrowser
     url=urls[integer23-1]
 
+    messagebox.showinfo(title="Sie werden weiter geleitet zum Urteil", message='Dürcken sie "Str + p" zum drucken')
     webbrowser.open_new_tab(url)
-knopf3=Button(fenster,text="Zum Urteil gehen",command=gotourl)
-knopf3.pack()
 
+knopf3=Button(fenster,text="Zum Urteil gehen",command=gotourl)
+knopf1.pack()
+lable2.pack()
+knopf1.configure(background="blue")
+knopf3.configure(background="green")
+
+
+def back():
+    global integer23
+    lableinfo.configure(text="error: Kein weiteres Ergebnis gefunden")
+    if integer23>1:
+        integer23-=2
+        nextresult()
+        lableinfo.configure(text="")
+knopf4 =Button(text="vorherigen Ergebnis",command=back)
+
+lableinfo= Label(fenster,text="")
+lableinfo.place(x="250",y="400")
 mainloop()
+
