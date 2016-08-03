@@ -1,6 +1,6 @@
 from tkinter import *
 from tkinter import messagebox
-
+from tkinter import PhotoImage
 
 integer23=0
 answer=""
@@ -8,6 +8,10 @@ title=["blabla","blablabla","blablablabla"]
 AZ=["bla","balbla","blablabla"]
 urls=["www.google.de","www.bing.de","www.yahoo.de"]
 fenster= Tk()
+background_image=PhotoImage(file="image.png")
+background_label = Label(fenster, image=background_image)
+background_label.place(x=0, y=0, relwidth=1, relheight=1)
+fenster.configure(background="light cyan")
 fenster.title("Urteils Suche")
 fenster.geometry("500x500")
 
@@ -26,8 +30,13 @@ def such():
     integer23=0
     nextresult()
     knopf4.place(x="0", y=200)
+
     knopf2.place(x="400", y="200")
+    lable2.pack()
+    lableinfo.place(x="250", y="400")
+    lableinfo.pack_configure(side="right")
     knopf3.place(x="200", y="200")
+
 
 knopf1= Button(fenster,text="Suchen",command=such)
 
@@ -56,7 +65,7 @@ def gotourl():
 
 knopf3=Button(fenster,text="Zum Urteil gehen",command=gotourl)
 knopf1.pack()
-lable2.pack()
+
 knopf1.configure(background="blue")
 knopf3.configure(background="green")
 
@@ -71,6 +80,14 @@ def back():
 knopf4 =Button(text="vorherigen Ergebnis",command=back)
 
 lableinfo= Label(fenster,text="")
-lableinfo.place(x="250",y="400")
+
+lable2.configure(background="light cyan")
+lableinfo.configure(background="light cyan")
+lable1.configure(background="light cyan")
+knopf2.configure(background="turquoise")
+knopf4.configure(background="turquoise")
+
+
+
 mainloop()
 
