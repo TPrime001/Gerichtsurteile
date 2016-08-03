@@ -42,12 +42,12 @@ def suche(sa):
     url=pickle.load(urlfile)
     urlfile.close()
 
-    rankedkeys=[]
-    rankedurls = []
-    rankedidfs = []
+    ranked_azs=[]
+    ranked_urls = []
+    ranked_idfs = []
     for key in ranked:
-        rankedkeys.append(key)
-        rankedidfs.append(resultdict[key])
-        rankedurls.append(url[key])
+        ranked_azs.append(key)
+        ranked_idfs.append(resultdict[key])
+        ranked_urls.append(url[key])
 
-    return (rankedkeys, rankedurls, rankedidfs)
+    return (ranked_azs, ranked_urls, ranked_idfs)
