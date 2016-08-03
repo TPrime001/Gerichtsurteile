@@ -7,8 +7,8 @@ import re
 
 def suche(sa):
     if re.findall('.*\".*', sa):
-        sa = filtershortcuts(sa)
-        sa=sa[0:re.match('.+"',sa).span()[1]-1]
+        filtershortcuts(sa)
+        sa=sa[0:re.match(re.compile('[^"]+"'),sa).span()[1]-1]
     qtokens = preprocesss(sa)
     with open("index/index.pickle", "rb") as f:
         index = pickle.load(f)
