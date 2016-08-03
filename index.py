@@ -3,10 +3,11 @@ from load_dataset import load_wikidata
 # import re
 import pickle
 from collections import defaultdict
+import json
 
-filename = ""  # TODO fill filename and data below
+filename = "TestProjetCrawler2/logs/reddit/2016-08-03T07-41-13.json"
 
-data_all = load_wikidata(filename)
+data_all = json.load(open(filename,"r"))
 
 AZlist = []
 textlist = []
@@ -24,7 +25,7 @@ for data_page in data_all:
     for i in keylist:
         index[i][data_page[i][0]].append(az)
 
-save_in = open("index\\infobox.pickle", "wb")
+save_in = open("index/infobox.pickle", "wb")
 pickle.dump(index, save_in)
 save_in.close()
 indexing(textlist, AZlist)
