@@ -19,25 +19,30 @@ def info():
 
 
 def filtershortcuts(query):
-    for key in regex_list:
-        i=regex_list[key]
+    for key2 in regex_list:
+        i=regex_list[key2]
         re_code = re.compile(i)
         tempvar = re.finditer(re_code, query)
-        shortcuts[key] = []
+        shortcuts[key2] = []
         for j in tempvar:
-            shortcuts[key].append(j.group(1))
+            shortcuts[key2].append(j.group(1))
+#    print(shortcuts)
 
 
 def filteroutput(output):
-    realout = []
+    realout = {}
     for az in output:
         isin = True
         for key in shortcuts:
-            i=shortcuts[key]
-            if index[key][i] != az:
-                isin = False
+            for i in shortcuts[key]:
+                isin2 = False
+                for az2 in index[key][i]:
+                    if az2==az:
+                        isin2= True
+                if isin2 == False:
+                    isin = False
         if isin == True:
-            realout.append(az)
+            realout[az]=output[az]
     return realout
 
 

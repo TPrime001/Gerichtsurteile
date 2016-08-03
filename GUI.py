@@ -1,5 +1,8 @@
 from tkinter import *
 from tkinter import messagebox
+from Query import info
+
+info()
 from tkinter import PhotoImage
 
 integer23=0
@@ -30,13 +33,8 @@ def such():
     integer23=0
     nextresult()
     knopf4.place(x="0", y=200)
-
     knopf2.place(x="400", y="200")
-    lable2.pack()
-    lableinfo.place(x="250", y="400")
-    lableinfo.pack_configure(side="right")
     knopf3.place(x="200", y="200")
-
 
 knopf1= Button(fenster,text="Suchen",command=such)
 
