@@ -26,7 +26,7 @@ def filtershortcuts(query):
         shortcuts[key2] = []
         for j in tempvar:
             shortcuts[key2].append(j.group(1))
-
+#    print(shortcuts)
 
 
 def filteroutput(output):
@@ -39,7 +39,7 @@ def filteroutput(output):
                 for az2 in index[key][i]:
                     if az2==az:
                         isin2= True
-                if isin2==False:
+                if isin2 == False:
                     isin = False
         if isin == True:
             realout[az]=output[az]

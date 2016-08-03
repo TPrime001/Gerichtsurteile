@@ -26,7 +26,7 @@ def suche(sa):
 
     #return (resultdict)
     #resultlist = set(resultlist)
-    filteroutput(resultdict)
+    resultdict = filteroutput(resultdict)
 
     ranked = sorted(resultdict, key = resultdict.get, reverse=True)
 
