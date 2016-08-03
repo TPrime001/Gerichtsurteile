@@ -34,6 +34,7 @@ def such():
     global answer
     global integer23
     integer23=0
+    lable2.pack()
     knopf4.place(x="0", y=200)
     knopf2.place(x="400", y="200")
     knopf3.place(x="200", y="200")
