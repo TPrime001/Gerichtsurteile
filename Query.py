@@ -19,7 +19,11 @@ def suche (sa):
     return (resultdict)
     #resultlist = set(resultlist)
     ranked = sorted(resultdict, key = resultdict.get, reverse=True)
-    return (ranked)
+
+    for key in ranked:
+        rankedkeys+= key
+
+    return (rankedkeys)
 
 
 #print(suche("toll"))
