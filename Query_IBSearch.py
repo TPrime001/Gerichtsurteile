@@ -19,7 +19,8 @@ def info():
 
 
 def filtershortcuts(query):
-    for key, i in regex_list:
+    for key in regex_list:
+        i=regex_list[key]
         re_code = re.compile(i)
         tempvar = re.finditer(re_code, query)
         shortcuts[key] = []
@@ -31,7 +32,8 @@ def filteroutput(output):
     realout = []
     for az in output:
         isin = True
-        for key, i in shortcuts:
+        for key in shortcuts:
+            i=shortcuts[key]
             if index[key][i] != az:
                 isin = False
         if isin == True:
