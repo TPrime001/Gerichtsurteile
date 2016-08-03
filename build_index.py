@@ -32,7 +32,7 @@ def indexing(textlist, AZ):
         for docid in index[woerter]:
             tfidf = index[woerter][docid] * idf
             index[woerter][docid] = tfidf
-    with open("index.pickle", "wb") as f:
+    with open("index/index.pickle", "wb") as f:
         pickle.dump(index, f)
 
     return index

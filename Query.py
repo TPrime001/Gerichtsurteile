@@ -5,7 +5,7 @@ from collections import defaultdict
 
 def suche (sa):
     qtokens = preprocesss(sa)
-    with open("index.pickle", "rb") as f:
+    with open("index/index.pickle", "rb") as f:
         index = pickle.load(f)
     resultdict = defaultdict(float)
     results2 = []
@@ -18,14 +18,8 @@ def suche (sa):
 
     return (resultdict)
     #resultlist = set(resultlist)
-'''for integ in sorted(resultlist):
-    dicte[integ]+=1
-print(dicte)
-liste=list(sorted(dicte, key=dicte.get,reverse=True))
-print (liste)
-if len(liste)>0:
-    print("Best article ist... Art. "+str(liste[0]))
-else:
-    print("No entry found")'''
+    ranked = sorted(resultdict, key = resultdict.get, reverse=True)
+    return (ranked)
 
-print(suche("toll"))
+
+#print(suche("toll"))
