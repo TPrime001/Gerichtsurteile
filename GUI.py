@@ -66,8 +66,8 @@ def gotourl():
 knopf3=Button(fenster,text="Zum Urteil gehen",command=gotourl)
 knopf1.pack()
 
-knopf1.configure(background="blue")
-knopf3.configure(background="green")
+knopf1.configure(background="tan1")
+knopf3.configure(background="greenyellow")
 
 
 def back():
@@ -84,8 +84,8 @@ lableinfo= Label(fenster,text="")
 lable2.configure(background="light cyan")
 lableinfo.configure(background="light cyan")
 lable1.configure(background="light cyan")
-knopf2.configure(background="turquoise")
-knopf4.configure(background="turquoise")
+knopf2.configure(background="chocolate2")
+knopf4.configure(background="chocolate2")
 
 
 

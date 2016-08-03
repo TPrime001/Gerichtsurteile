@@ -36,4 +36,3 @@ def indexing(textlist, AZ):
         pickle.dump(index, f)
 
     return index
-
