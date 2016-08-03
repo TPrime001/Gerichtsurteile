@@ -5,9 +5,10 @@ from Query_IBSearch import filteroutput, filtershortcuts, info
 import re
 #sa = input ("Geben sie eie Suchanfrage ein\n ")
 
-def suche (sa):
-    sa = filtershortcuts(sa)
-    sa=sa[0:re.match('.+"',sa).span()[1]-1]
+def suche(sa):
+    if re.findall('.*\".*', sa):
+        sa = filtershortcuts(sa)
+        sa=sa[0:re.match('.+"',sa).span()[1]-1]
     qtokens = preprocesss(sa)
     with open("index/index.pickle", "rb") as f:
         index = pickle.load(f)
@@ -23,11 +24,22 @@ def suche (sa):
 #                for AZ_no in results2:
 #                    resultdict[AZ_no]+=index[token][AZ_no]
 
-    return (resultdict)
+    #return (resultdict)
     #resultlist = set(resultlist)
+    filteroutput(resultdict)
+
     ranked = sorted(resultdict, key = resultdict.get, reverse=True)
 
-    for key in ranked:
-        rankedkeys+= key
+    urlfile=open("index/urls.pickle","rb")
+    url=pickle.load(urlfile)
+    urlfile.close()
 
-    return (rankedkeys)
+    rankedkeys=[]
+    rankedurls = []
+    rankedidfs = []
+    for key in ranked:
+        rankedkeys.append(key)
+        rankedidfs.append(resultdict[key])
+        rankedurls.append(url[key])
+
+    return (rankedkeys, rankedurls, rankedidfs)

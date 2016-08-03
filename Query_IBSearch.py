@@ -29,7 +29,7 @@ def filtershortcuts(query):
 
 
 def filteroutput(output):
-    realout = []
+    realout = {}
     for az in output:
         isin = True
         for key in shortcuts:
@@ -37,7 +37,7 @@ def filteroutput(output):
             if index[key][i] != az:
                 isin = False
         if isin == True:
-            realout.append(az)
+            realout[az]=output[az]
     return realout
 
 
