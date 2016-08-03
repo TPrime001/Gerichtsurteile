@@ -1,15 +1,16 @@
 from tkinter import *
 from tkinter import messagebox
 from Query import info
+from Query import suche
 
-info()
 from tkinter import PhotoImage
 
 integer23=0
 answer=""
-title=["blabla","blablabla","blablablabla"]
-AZ=["bla","balbla","blablabla"]
-urls=["www.google.de","www.bing.de","www.yahoo.de"]
+
+AZ=[]
+urls=[]
+idfs=[]
 fenster= Tk()
 background_image=PhotoImage(file="image.png")
 background_label = Label(fenster, image=background_image)
@@ -24,13 +25,16 @@ eingabe=Entry(fenster)
 eingabe.pack()
 lable2= Label(fenster, text="")
 def such():
-
+    global AZ
+    global urls
     q=eingabe.get()
+    AZ,urls,idfs=suche(q)
     #suche mit q
     #get AZ and Url
     global answer
     global integer23
     integer23=0
+    lable2.pack()
     knopf4.place(x="0", y=200)
     knopf2.place(x="400", y="200")
     knopf3.place(x="200", y="200")
@@ -46,7 +50,7 @@ def nextresult():
     integer23+=1
     global answer
     try:
-        answer ="\n"+ AZ[integer23 -1]+"\n"+title[integer23 -1]
+        answer = AZ[integer23 -1]
         lableinfo.configure(text="")
     except:
         integer23-=1

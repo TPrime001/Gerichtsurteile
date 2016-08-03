@@ -17,6 +17,14 @@ def suche(sa):
     for w in qtokens:
         for az in index[w]:
             resultdict[az]+=index[w][az]
+
+    urlfile=open("index/urls.pickle","rb")
+    url=pickle.load(urlfile)
+    urlfile.close()
+
+    if sa == "." or sa == ". ":
+        for key in url:
+            resultdict[key]=0
 #    for token, val in index:
 #        for w in qtokens:
 #            if token == w:
@@ -34,12 +42,12 @@ def suche(sa):
     url=pickle.load(urlfile)
     urlfile.close()
 
-    rankedkeys=[]
-    rankedurls = []
-    rankedidfs = []
+    ranked_azs=[]
+    ranked_urls = []
+    ranked_idfs = []
     for key in ranked:
-        rankedkeys.append(key)
-        rankedidfs.append(resultdict[key])
-        rankedurls.append(url[key])
+        ranked_azs.append(key)
+        ranked_idfs.append(resultdict[key])
+        ranked_urls.append(url[key])
 
-    return (rankedkeys, rankedurls, rankedidfs)
+    return (ranked_azs, ranked_urls, ranked_idfs)
