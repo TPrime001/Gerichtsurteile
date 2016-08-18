@@ -1,16 +1,21 @@
 from tkinter import *
 from tkinter import messagebox
-
 from Query import info
+from Query import suche
 
-info()
+from tkinter import PhotoImage
 
 integer23=0
 answer=""
-title=["blabla","blablabla","blablablabla"]
-AZ=["bla","balbla","blablabla"]
-urls=["www.google.de","www.bing.de","www.yahoo.de"]
+
+AZ=[]
+urls=[]
+idfs=[]
 fenster= Tk()
+background_image=PhotoImage(file="image.png")
+background_label = Label(fenster, image=background_image)
+background_label.place(x=0, y=0, relwidth=1, relheight=1)
+fenster.configure(background="light cyan")
 fenster.title("Urteils Suche")
 fenster.geometry("500x500")
 
@@ -20,17 +25,22 @@ eingabe=Entry(fenster)
 eingabe.pack()
 lable2= Label(fenster, text="")
 def such():
-
+    global AZ
+    global urls
     q=eingabe.get()
+    AZ,urls,idfs=suche(q)
     #suche mit q
     #get AZ and Url
     global answer
     global integer23
     integer23=0
-    nextresult()
+    lable2.pack()
     knopf4.place(x="0", y=200)
     knopf2.place(x="400", y="200")
     knopf3.place(x="200", y="200")
+    lableinfo.place(x="200", y="400")
+    lableinfo.pack_configure(side="right")
+    nextresult()
 
 knopf1= Button(fenster,text="Suchen",command=such)
 
@@ -40,7 +50,7 @@ def nextresult():
     integer23+=1
     global answer
     try:
-        answer ="\n"+ AZ[integer23 -1]+"\n"+title[integer23 -1]
+        answer = AZ[integer23 -1]
         lableinfo.configure(text="")
     except:
         integer23-=1
@@ -59,9 +69,9 @@ def gotourl():
 
 knopf3=Button(fenster,text="Zum Urteil gehen",command=gotourl)
 knopf1.pack()
-lable2.pack()
-knopf1.configure(background="blue")
-knopf3.configure(background="green")
+
+knopf1.configure(background="tan1")
+knopf3.configure(background="greenyellow")
 
 
 def back():
@@ -74,6 +84,14 @@ def back():
 knopf4 =Button(text="vorherigen Ergebnis",command=back)
 
 lableinfo= Label(fenster,text="")
-lableinfo.place(x="250",y="400")
+
+lable2.configure(background="light cyan")
+lableinfo.configure(background="light cyan")
+lable1.configure(background="light cyan")
+knopf2.configure(background="chocolate2")
+knopf4.configure(background="chocolate2")
+
+
+
 mainloop()
 
