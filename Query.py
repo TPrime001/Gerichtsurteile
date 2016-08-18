@@ -2,15 +2,18 @@ import pickle
 from PreprocessGU import preprocesss
 from collections import defaultdict
 from Query_IBSearch import filteroutput, filtershortcuts, info
-import re
+import re, os
 #sa = input ("Geben sie eie Suchanfrage ein\n ")
 
 def suche (sa):
     sa = filtershortcuts(sa)
     sa=sa[0:re.match('.+"',sa).span()[1]-1]
     qtokens = preprocesss(sa)
-    with open("index/index.pickle", "rb") as f:
-        index = pickle.load(f)
+    index = dict
+    for token in qtokens:
+        if os.path.exists("index/w/"+token+".pickle"):
+            with open("index/"+token+".pickle", "rb") as f:
+                index[token] = pickle.load(f)
     resultdict = defaultdict(float)
     results2 = []
     for w in qtokens:

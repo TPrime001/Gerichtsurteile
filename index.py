@@ -1,9 +1,17 @@
 from build_index import indexing
 from load_dataset import load_wikidata
-# import re
+import re
 import pickle
 from collections import defaultdict
 import json
+
+def rework(az):
+    matchobj = re.search("\) ([0-9A-Za-z \/\.-]+) \(",") "+az+" (")
+    if matchobj!=None:
+        #print(matchobj,matchobj.group(1))
+        return matchobj.group(1)
+    else:
+        return az
 
 filename = "TestProjetCrawler2/logs/reddit/2016-08-03T07-41-13.json"
 
@@ -22,8 +30,9 @@ for data_page in data_all:
     AZlist.append(az)
     textlist.append(data_page["text"][0])
     urllist[az] = data_page["url"][0]
+    az_rew=rework(az)
     for i in keylist:
-        index[i][data_page[i][0]].append(az)
+        index[i][data_page[i][0]].append(az_rew)
 
 save_in = open("index/infobox.pickle", "wb")
 pickle.dump(index, save_in)

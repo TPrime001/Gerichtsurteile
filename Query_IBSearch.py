@@ -2,7 +2,7 @@ import re
 import pickle
 
 regex_list = {'gericht': '" ?G ?= ?([0-9A-Za-z \/\.-]+) ?"', 'datum': '" ?D ?= ?([0-9A-Za-z \/\.-]+) ?"',
-              'AZ': '" ?AZ ?= ?([0-9A-Za-z \/\.-]+) ?"', 'typ': '" ?T ?= ?([0-9A-Za-z \/\.-]+) ?"',
+              'AZ': '" ?AZ ?= ?(\(.*\))? ?([0-9A-Za-z \/\.-]+) ?(\(.*\))? ?"', 'typ': '" ?T ?= ?([0-9A-Za-z \/\.-]+) ?"',
               'rechtsgebiete': '" ?R ?= ?([0-9A-Za-z \/\.-]+) ?"'}
 
 shortcuts = {}

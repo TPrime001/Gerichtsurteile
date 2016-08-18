@@ -1,6 +1,9 @@
 from tkinter import *
 from tkinter import messagebox
 
+from Query import info
+
+info()
 
 integer23=0
 answer=""
