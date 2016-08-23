@@ -10,16 +10,18 @@ def suche(sa):
         filtershortcuts(sa)
         sa=sa[0:re.match(re.compile('[^"]+"'),sa).span()[1]-1]
     qtokens = preprocesss(sa)
-    index = dict
+    index = {}
     for token in qtokens:
         if os.path.exists("index/w/"+token+".pickle"):
-            with open("index/"+token+".pickle", "rb") as f:
+            with open("index/w/"+token+".pickle", "rb") as f:
                 index[token] = pickle.load(f)
     resultdict = defaultdict(float)
     results2 = []
     for w in qtokens:
-        for az in index[w]:
-            resultdict[az]+=index[w][az]
+        if index.get(w,0):
+
+            for az in index[w]:
+                resultdict[az]+=index[w][az]
 
     urlfile=open("index/urls.pickle","rb")
     url=pickle.load(urlfile)

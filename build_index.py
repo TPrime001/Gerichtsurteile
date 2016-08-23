@@ -3,6 +3,7 @@ from collections import defaultdict
 from os import path
 import pickle
 import math
+import os
 
 index = defaultdict(dict)
 
@@ -32,7 +33,10 @@ def indexing(textlist, AZ):
         for docid in index[woerter]:
             tfidf = index[woerter][docid] * idf
             index[woerter][docid] = tfidf
+        newpath="index/w/"
+        if not os.path.exists(newpath):
+            os.makedirs(newpath)
         with open("index/w/"+woerter+".pickle", "wb") as f:
             pickle.dump(index[woerter], f)
 
-    return index
+
